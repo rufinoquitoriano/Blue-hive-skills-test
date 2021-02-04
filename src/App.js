@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "tailwindcss/tailwind.css";
+import { Switch, Route } from "react-router-dom";
+
+//components
+import Home from "./component/Home";
+import AddList from "./component/AddList";
+import EditList from "./component/EditList";
+import Login from "./component/Login";
+import Register from "./component/Register";
+import Invoice from "./component/invoice/Invoice";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {/* <Switch>
+        <Route path="/" component={Home} />
+        <Route path="/addlist" component={AddList} />
+        <Route path="/editlist" component={EditList} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+      </Switch> */}
+      <Invoice />
     </div>
   );
 }
