@@ -1,15 +1,17 @@
 import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 
 function Invoice() {
   const [edit, setEdit] = useState(0);
   const [name, setName] = useState("");
   const [quantity, setQuantity] = useState(0);
   const [price, setPrice] = useState(0);
+  const history = useHistory();
 
   const [invoice, setInvoice] = useState({
     invoiceNumber: "XXXXXXX",
     invoiceDate: "02/04/2021",
-    customerName: "Rufino Quitoriano",
+    customerName: "Rufino Quitoriano Jr.",
     products: [
       { id: 1, productName: "Mouse", quantity: 2, price: 300 },
       { id: 2, productName: "Mouse", quantity: 5, price: 300 },
@@ -46,31 +48,31 @@ function Invoice() {
   };
 
   return (
-    <div className="px-10 bg-gray-200 h-screen py-32">
+    <div className="h-screen px-10 py-32 bg-blue-400">
       <table className="w-full">
         <tbody>
           <tr className="grid grid-cols-4">
-            <td className="border col-span-1">{invoice.invoiceNumber}</td>
-            <td className="border col-span-1"></td>
-            <td className="border col-span-1"></td>
-            <td className="border col-span-1">{invoice.invoiceDate}</td>
+            <td className="col-span-1 border">{invoice.invoiceNumber}</td>
+            <td className="col-span-1 border"></td>
+            <td className="col-span-1 border"></td>
+            <td className="col-span-1 border">{invoice.invoiceDate}</td>
           </tr>
           <tr className="grid grid-cols-4">
-            <td className="border col-span-1"> </td>
-            <td className="border col-span-1"> </td>
-            <td className="border col-span-1"> </td>
-            <td className="border col-span-1">{invoice.customerName}</td>
+            <td className="col-span-1 border"> </td>
+            <td className="col-span-1 border"> </td>
+            <td className="col-span-1 border"> </td>
+            <td className="col-span-1 border">{invoice.customerName}</td>
           </tr>
         </tbody>
       </table>
       <table className="w-full">
         <thead>
           <tr className="grid grid-cols-5">
-            <th className="border col-span-1">Product Name</th>
-            <th className="border col-span-1">Quantity</th>
-            <th className="border col-span-1">Price</th>
-            <th className="border col-span-1">Sub Total</th>
-            <th className="border col-span-1">Action</th>
+            <th className="col-span-1 border">Product Name</th>
+            <th className="col-span-1 border">Quantity</th>
+            <th className="col-span-1 border">Price</th>
+            <th className="col-span-1 border">Sub Total</th>
+            <th className="col-span-1 border">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -82,26 +84,26 @@ function Invoice() {
               //   setQuantity(product.quantity);
               return (
                 <tr className="grid grid-cols-5">
-                  <td className="border col-span-1">
+                  <td className="col-span-1 border">
                     <input
                       defaultValue={product.productName}
                       onChange={(e) => setName(e.target.value)}
                     />
                   </td>
-                  <td className="border col-span-1">
+                  <td className="col-span-1 border">
                     <input
                       defaultValue={product.quantity}
                       onChange={(e) => setQuantity(e.target.value)}
                     />
                   </td>
-                  <td className="border col-span-1">
+                  <td className="col-span-1 border">
                     <input
                       defaultValue={product.price}
                       onChange={(e) => setPrice(e.target.value)}
                     />
                   </td>
-                  <td className="border col-span-1"></td>
-                  <td className="border col-span-1 grid grid-cols-2 ">
+                  <td className="col-span-1 border"></td>
+                  <td className="grid grid-cols-2 col-span-1 border ">
                     <button
                       className="col-span-1"
                       onClick={() => onEdit(product.id)}
@@ -126,13 +128,13 @@ function Invoice() {
             }
             return (
               <tr className="grid grid-cols-5">
-                <td className="border col-span-1">{product.productName}</td>
-                <td className="border col-span-1">{product.quantity}</td>
-                <td className="border col-span-1">{product.price}</td>
-                <td className="border col-span-1">
+                <td className="col-span-1 border">{product.productName}</td>
+                <td className="col-span-1 border">{product.quantity}</td>
+                <td className="col-span-1 border">{product.price}</td>
+                <td className="col-span-1 border">
                   {product.quantity * product.price}
                 </td>
-                <td className="border col-span-1 grid grid-cols-2 ">
+                <td className="grid grid-cols-2 col-span-1 border ">
                   <button
                     className="col-span-1"
                     onClick={() => setEdit(product.id)}
@@ -150,15 +152,18 @@ function Invoice() {
             );
           })}
           <tr className="grid grid-cols-4">
-            <td className="border col-span-1"></td>
-            <td className="border col-span-1"></td>
-            <td className="border col-span-1">Total</td>
-            <td className="border col-span-1">
+            <td className="col-span-1 border"></td>
+            <td className="col-span-1 border"></td>
+            <td className="col-span-1 border">Total</td>
+            <td className="col-span-1 border">
               {edit !== 0 ? 0 : invoice.total}
             </td>
           </tr>
         </tbody>
       </table>
+      <Link to="/">
+        <button className="p-2 my-4">Back to Home</button>
+      </Link>
     </div>
   );
 }
